@@ -11,54 +11,71 @@ let gameBoard = [
 let playerTurn = true;
 
 const checkWin = function () {
+  winner = "";
   if ('X' === gameBoard[0][0] && 'X' === gameBoard[0][1] && 'X' === gameBoard[0][2]) {
     winner = 'player01';
-    $('.message').html("Congratulations player01")};
+    //$('.message').html("Congratulations player01")
+  };
   if ('O' === gameBoard[0][0] && 'O' === gameBoard[0][1] && 'O' === gameBoard[0][2]) {
     winner = 'player02';
-    $('.message').html("Congratulations player02")};
+    //$('.message').html("Congratulations player02")
+  };
   if ('X' === gameBoard[1][0] && 'X' === gameBoard[1][1] && 'X' === gameBoard[1][2]) {
     winner = 'player01';
-    $('.message').html("Congratulations player01")};
+    //$('.message').html("Congratulations player01")
+  };
   if ('O' === gameBoard[1][0] && 'O' === gameBoard[1][1] && 'X' === gameBoard[1][2]) {
     winner = 'player02';
-    $('.message').html("Congratulations player02")};
+    //$('.message').html("Congratulations player02")
+  };
   if ('X' === gameBoard[2][0] && 'X' === gameBoard[2][1] && 'X' === gameBoard[2][2]) {
     winner = 'player01';
-    $('.message').html("Congratulations player01")};
+    //$('.message').html("Congratulations player01")
+  };
   if ('O' === gameBoard[2][0] && 'O' === gameBoard[2][1] && 'O' === gameBoard[2][2]) {
     winner = 'player02';
-    $('.message').html("Congratulations player02")};
+    //$('.message').html("Congratulations player02")
+  };
   if ('X' === gameBoard[0][0] && 'X' === gameBoard[1][0] && 'X' === gameBoard[2][0]) {
     winner = 'player01';
-    $('.message').html("Congratulations player01")};
+    //$('.message').html("Congratulations player01")
+  };
   if ('O' === gameBoard[0][0] && 'O' === gameBoard[1][0] && 'O' === gameBoard[2][0]) {
     winner = 'player02';
-    $('.message').html("Congratulations player02")};
+    //$('.message').html("Congratulations player02")
+  };
   if ('X' === gameBoard[0][1] && 'X' === gameBoard[1][1] && 'X' === gameBoard[2][1]) {
     winner = 'player01';
-    $('.message').html("Congratulations player01")};
+    //$('.message').html("Congratulations player01")
+  };
   if ('O' === gameBoard[0][1] && 'O' === gameBoard[1][1] && 'O' === gameBoard[2][1]) {
     winner = 'player02';
-    $('.message').html("Congratulations player02")};
+    //$('.message').html("Congratulations player02")
+  };
   if ('X' === gameBoard[0][2] && 'X' === gameBoard[1][2] && 'X' === gameBoard[2][2]) {
     winner = 'player01';
-    $('.message').html("Congratulations player01")};
+    //$('.message').html("Congratulations player01")
+  };
   if ('O' === gameBoard[0][2] && 'O' === gameBoard[1][2] && 'O' === gameBoard[2][2]) {
     winner = 'player02';
-    $('.message').html("Congratulations player02")};
+    //$('.message').html("Congratulations player02")
+  };
   if ('X' === gameBoard[0][0] && 'X' === gameBoard[1][1] && 'X' === gameBoard[2][2]) {
     winner = 'player01';
-    $('.message').html("Congratulations player01")};
+    //$('.message').html("Congratulations player01")
+  };
   if ('O' === gameBoard[0][0] && 'O' === gameBoard[1][1] && 'O' === gameBoard[2][2]) {
     winner = 'player02';
-    $('.message').html("Congratulations player02")};
+    //$('.message').html("Congratulations player02")
+  };
   if ('X' === gameBoard[2][0] && 'X' === gameBoard[1][1] && 'X' === gameBoard[0][2]) {
     winner = 'player01';
-    $('.message').html("Congratulations player01")};
+    //$('.message').html("Congratulations player01")
+  };
   if ('O' === gameBoard[2][0] && 'O' === gameBoard[1][1] && 'O' === gameBoard[0][2]) {
     winner = 'player02';
-    $('.message').html("Congratulations player02")};
+    //$('.message').html("Congratulations player02")
+  };
 };
 
 let player01 = function (row, index, square) {
@@ -89,18 +106,14 @@ let player01 = function (row, index, square) {
 };
 
 let player02 = function (){
-  copyEmptyArr = pickBestSquare();
+  //var copyEmptyArr = pickBestSquare();
   
-  pos = minimax(gameBoard, 'O').coords;
-  console.log('pos ' + pos)
-  //pos = pickBestSquare();
-  //pos1 = pos[0];
-  //pos2 = pos[1];
-  //let markerTwo = gameBoard[pos1][pos2];
-  console.log(pos);
-  let markerTwo = pos;
-  //gameBoard[pos1][pos2] = 'O'
-  pos = 'O'
+  moveObj = minimax(gameBoard, 'O');
+  index = moveObj.coords
+  console.log('pos ' + index)
+  let markerTwo = index;
+  gameBoard[moveObj.pos1][moveObj.pos2] = 'O'
+  //pos = 'O'
   console.log(markerTwo)
   $( "#sq" + markerTwo ).text('O')
   $( "#sq" + markerTwo ).css( 'background-color', '#b3ffb3' );
@@ -116,6 +129,7 @@ let resetBoard = function(){
     pos = copyEmptyArr[i]
     gameBoard[pos[0]][pos[1]] = '';
   }
+  return gameBoard;
 }
 
 let pickBestSquare = function(){
@@ -125,7 +139,7 @@ let pickBestSquare = function(){
     for(j=0; j< arr.length; j++){
       item = arr[j];
       if (item === 'X' || item === 'O'){
-        console.log(j + ',' + item);
+        console.log(j + ': ' + item);
       } else {
         //console.log(i);
         obj = [i, j];
@@ -155,30 +169,34 @@ let minimax = function(board, player){
 
   var moves = [];
   for (k=0; k < freeSpots.length; k++){
-    pos = freeSpots[k];
-    pos1 = pos[0];
-    pos2 = pos[1];
+    var pos = freeSpots[k];
+    var pos1 = pos[0];
+    var pos2 = pos[1];
     console.log('target pos ' + pos1 + ',' + pos2)
     var move = {};
     move.coords = board[pos1][pos2];
+    move.pos1 = pos1;
+    move.pos2 = pos2;
     board[pos1][pos2] = player;
 
     if (player === 'O'){
       var result = minimax(board, 'X');
       move.score = result.score;
+      console.log('score: ' + move.score + ' coords:' + move.coords)
     } else {
       var result = minimax(board, 'O');
       move.score = result.score;
+      console.log('score: ' + move.score + ' coords:' + move.coords)
     }
 
-    //board[pos1][pos2] = '';
-    resetBoard();
-    console.log('end of for' + board[pos1] + ' sep ' + board[pos2])
+    board[pos1][pos2] = move.coords;
+    //board = resetBoard();
+    console.log('end of for' + board[1][2]);
     moves.push(move);
-    console.log('move ' + move.coords)
+    //console.log('move ' + move.coords)
   }
 
-  pickBestSquare();
+  //pickBestSquare();
 
   var bestMove;
   if(player === 'O'){
