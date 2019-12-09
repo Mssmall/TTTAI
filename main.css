@@ -1,0 +1,218 @@
+h1 {
+  text-align: center;
+  color: rgb(37, 152, 131);
+  font-size: 100px;
+  /*margin: 0 auto;*/
+  top: 200px;
+  height: 0px;
+  width: 20px;
+}
+
+body {
+  line-height: 100px;
+  text-align: center;
+  font-size: 65px;
+  top: 30px;
+  /*margin: 0 auto;*/
+  font-family: 'Caveat', cursive;
+}
+
+.container {
+    width: 587px;
+    min-height: 458px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.gameBoard {
+  min-width: 400px;
+  min-height: 337px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.message {
+  height: 160px;
+  width: 400px;
+  font-size: 40px;
+  color: rgb(37, 152, 131);
+  text-align: center;
+  margin: 0 auto;
+  position: absolute;
+  top: 340px;
+  left: 85px;
+  /*font-family: 'Libre Barcode 39 Text', cursive;*/
+}
+
+.hardMessage {
+  height: 100px;
+  width: 400px;
+  font-size: 40px;
+  color: rgb(37, 152, 131);
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+}
+
+aside {
+  /*top: -300px;*/
+  top: -50px;
+  right: 100px;
+  position: relative;
+}
+
+a.buttonEasy {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+    /*color: initial;*/
+    font-size: 20px;
+    height: 30px;
+    width: 50px;
+    line-height: 30px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: none;
+    position: relative;
+    left: 100px;
+}
+
+a.buttonHard {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+    /*color: initial;*/
+    font-size: 20px;
+    height: 30px;
+    width: 50px;
+    line-height: 30px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #e6f7ff;
+    position: relative;
+    left: 100px;
+}
+
+a.buttonReset {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+    /*color: initial;*/
+    font-size: 20px;
+    height: 30px;
+    width: 50px;
+    line-height: 30px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #e6f7ff;
+    position: relative;
+    left: 100px;
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+
+#sq1 {
+  position: absolute;
+  top: 11px;
+  left: 128px;
+  border-right: solid 8px #0d3182;
+  border-bottom: solid 8px #0d3182;
+}
+
+#sq2 {
+  position: absolute;
+  top: 11px;
+  left: 228px;
+  border-left: solid 8px #0d3182;
+  border-right: solid 8px #0d3182;
+  border-bottom: solid 8px #0d3182;
+}
+
+#sq3 {
+  position: absolute;
+  top: 11px;
+  left: 336px;
+  border-left: solid 8px #0d3182;
+  border-bottom: solid 8px #0d3182;
+}
+
+#sq4 {
+  position: absolute;
+  top: 111px;
+  left: 128px;
+  border-top: solid 8px #0d3182;
+  border-right: solid 8px #0d3182;
+  border-bottom: solid 8px #0d3182;
+}
+
+#sq5 {
+  position: absolute;
+  top: 111px;
+  left: 228px;
+  border: solid 8px #0d3182;
+}
+
+#sq6 {
+  position: absolute;
+  top: 111px;
+  left: 336px;
+  border-top: solid 8px #0d3182;
+  border-left: solid 8px #0d3182;
+  border-bottom: solid 8px #0d3182;
+}
+
+#sq7 {
+  position: absolute;
+  top: 219px;
+  left: 128px;;
+  border-top: solid 8px #0d3182;
+  border-right: solid 8px #0d3182;
+}
+
+#sq8 {
+  position: absolute;
+  top: 219px;
+  left: 228px;
+  border-left: solid 8px #0d3182;
+  border-top: solid 8px #0d3182;
+  border-right: solid 8px #0d3182;
+}
+
+#sq9 {
+  position: absolute;
+  top: 219px;
+  left: 336px;
+  border-left: solid 8px #0d3182;
+  border-top: solid 8px #0d3182;
+}
+
+.hardLevel .gameBoard {
+    /*makes grid spin */
+    -webkit-animation:spin 2s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+
+}
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg); transform:rotate(360deg);
+  }
+}
