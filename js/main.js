@@ -157,6 +157,7 @@ let minimax = function(board, player){
   console.log('minimax is called')
   var freeSpots = pickBestSquare();
   checkWin();
+  console.log('winner: ' + winner);
   if(winner === 'player01'){
     return {score: -10 };
   } else if (winner === 'player02'){
@@ -168,12 +169,15 @@ let minimax = function(board, player){
   }
 
   var moves = [];
+  console.log('LENGTH: ' + freeSpots.length)
   for (k=0; k < freeSpots.length; k++){
+    var move = {};
     var pos = freeSpots[k];
     var pos1 = pos[0];
     var pos2 = pos[1];
     console.log('target pos ' + pos1 + ',' + pos2)
-    var move = {};
+
+    
     move.coords = board[pos1][pos2];
     move.pos1 = pos1;
     move.pos2 = pos2;
@@ -190,13 +194,9 @@ let minimax = function(board, player){
     }
 
     board[pos1][pos2] = move.coords;
-    //board = resetBoard();
     console.log('end of for' + board[1][2]);
     moves.push(move);
-    //console.log('move ' + move.coords)
   }
-
-  //pickBestSquare();
 
   var bestMove;
   if(player === 'O'){
@@ -205,16 +205,20 @@ let minimax = function(board, player){
       if(moves[i].score > bestScore){
         bestScore = moves[i].score;
         bestMove = i;
+        
       } 
     }
+    console.log(' 0 best move: ' + i)
   } else {
     var bestScore = 10000;
     for(var i=0; i < moves.length; i++){
       if(moves[i].score < bestScore){
         bestScore = moves[i].score;
         bestMove = i;
+        
       } 
     }
+    console.log('best move: ' + i)
   }
   return moves[bestMove];
 
